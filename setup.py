@@ -12,7 +12,7 @@ setup(
     version='0.1',
     packages=['simple_pagination'],
     include_package_data=True,
-    description='A simple Django app to conduct Web-based polls.',
+    description='A simple pagination app for Django.',
     long_description=README,
     url='https://github.com/MicroPyramid/django-simple-pagination',
     author='Chaitanya',
@@ -24,7 +24,6 @@ setup(
         'Operating System :: OS Independent',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
-        # Replace these appropriately if you are stuck on Python 2.
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.2',
