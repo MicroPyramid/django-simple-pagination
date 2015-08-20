@@ -1,0 +1,9 @@
+{% load paginate %}
+
+{% paginate 3 users %}
+
+{% for i in users %}
+{{i.username}}
+{% endfor %}
+
+{% show_pages %}
