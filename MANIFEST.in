@@ -1,2 +1,2 @@
 include README.rst
-recursive-include sample_pagination/templates *
+recursive-include simple_pagination/templates *
