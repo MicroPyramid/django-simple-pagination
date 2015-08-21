@@ -1,6 +1,5 @@
 *.pyc
 *~
 db.sqlite3
-MANIFEST.in
 django_simple_pagination
 dist

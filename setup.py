@@ -24,7 +24,7 @@ setup(
     name='django-simple-pagination',
     version='0.1.1',
     packages=['simple_pagination', 'simple_pagination.migrations', 'simple_pagination.templatetags'],
-    package_data={PROJECT_NAME: data_files},
+    include_package_data=True,
     description='A simple pagination app for Django.',
     long_description=README,
     url='https://github.com/MicroPyramid/django-simple-pagination',
