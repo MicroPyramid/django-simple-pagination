@@ -8,7 +8,7 @@ from django.template import (
 )
 from django.utils.encoding import iri_to_uri
 
-from django_simple_pagination import settings
+from simple_pagination import settings
 from simple_pagination import utils
 
 
@@ -57,9 +57,9 @@ class EndlessPage(utils.UnicodeMixin):
             'querystring_key': self.querystring_key,
         }
         if self.is_current:
-            template_name = 'current_link.html'
+            template_name = 'simple/current_link.html'
         else:
-            template_name = 'page_link.html'
+            template_name = 'simple/page_link.html'
         template = _template_cache.setdefault(
             template_name, loader.get_template(template_name))
         return template.render(RequestContext(self._request, context))
@@ -160,7 +160,7 @@ class PageList(utils.UnicodeMixin):
                 else:
                     pages.append(self[item])
             context = RequestContext(self._request, {'pages': pages})
-            return loader.render_to_string('show_pages.html', context)
+            return loader.render_to_string('simple/show_pages.html', context)
         return ''
 
     def current(self):

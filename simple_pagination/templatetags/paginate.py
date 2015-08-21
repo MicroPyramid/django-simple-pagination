@@ -4,7 +4,7 @@ import re
 
 from django import template
 from django.utils.encoding import iri_to_uri
-from django.conf import settings
+from simple_pagination import settings
 from django.core.paginator import (
     EmptyPage,
     Page,

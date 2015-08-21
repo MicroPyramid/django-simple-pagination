@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 import sys
 
-from django_simple_pagination.settings import (
+from simple_pagination.settings import (
     PAGE_LABEL
 )
 

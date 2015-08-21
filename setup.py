@@ -10,7 +10,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='django-simple-pagination',
     version='0.1',
-    packages=['simple_pagination'],
+    packages=['simple_pagination', 'simple_pagination.migrations', 'simple_pagination.templatetags'],
     include_package_data=True,
     description='A simple pagination app for Django.',
     long_description=README,

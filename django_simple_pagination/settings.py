@@ -96,12 +96,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-PER_PAGE = 2
-PAGE_LABEL = "page"
-NEXT_LABEL = '<span aria-hidden="true">&gt;</span>'
-PREVIOUS_LABEL = '<span aria-hidden="true">&lt;</span>'
-LAST_LABEL = '<span aria-hidden="true">&gt;&gt;</span>'
-FIRST_LABEL = '<span aria-hidden="true">&lt;&lt;</span>'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
