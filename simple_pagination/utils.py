@@ -61,8 +61,8 @@ def get_page_numbers(
 
     pages = []
     if current_page != 1:
-        pages.append('previous')
         pages.append('first')
+        pages.append('previous')
     pages.extend([i for i in range(start_page, end_page+1)])
     if current_page != num_pages:
         pages.append('next')
