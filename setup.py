@@ -6,12 +6,25 @@ with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
 
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
+PROJECT_NAME = 'simple_pagination'
+
+data_files = []
+for dirpath, dirnames, filenames in os.walk(PROJECT_NAME):
+    for i, dirname in enumerate(dirnames):
+        if dirname.startswith('.'):
+            del dirnames[i]
+    if '__init__.py' in filenames:
+        continue
+    elif filenames:
+        for f in filenames:
+            data_files.append(os.path.join(
+                dirpath[len(PROJECT_NAME) + 1:], f))
 
 setup(
     name='django-simple-pagination',
-    version='0.1',
+    version='0.1.1',
     packages=['simple_pagination', 'simple_pagination.migrations', 'simple_pagination.templatetags'],
-    include_package_data=True,
+    package_data={PROJECT_NAME: data_files},
     description='A simple pagination app for Django.',
     long_description=README,
     url='https://github.com/MicroPyramid/django-simple-pagination',
