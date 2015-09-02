@@ -228,3 +228,49 @@ class PageList(utils.UnicodeMixin):
     def paginated(self):
         """Return True if this page list contains more than one page."""
         return len(self) > 1
+
+
+class ShowItems(utils.UnicodeMixin):
+    """A page link representation.
+
+    Interesting attributes:
+
+        - *self.number*: the page number;
+        - *self.label*: the label of the link
+          (usually the page number as string);
+        - *self.url*: the url of the page (strting with "?");
+        - *self.path*: the path of the page;
+        - *self.is_current*: return True if page is the current page displayed;
+        - *self.is_first*: return True if page is the first page;
+        - *self.is_last*:  return True if page is the last page.
+    """
+
+    def __init__(
+            self, request, page, querystring_key,
+            default_number=None, override_path=None):
+        self._request = request
+        self._page = page
+        if default_number is None:
+            self._default_number = 1
+        else:
+            self._default_number = int(default_number)
+        self._querystring_key = querystring_key
+        self._override_path = override_path
+
+    def __unicode__(self):
+        """Render the page as a link."""
+        str_data = "Showing "
+        if self._page.paginator.count == 1:
+            str_data += str(1)
+            str_data = str_data + " to " + str(len(self._page.object_list)) + " of " + str(len(self._page.object_list))
+        else:
+            if self._page.number == 1:
+                str_data += str(1)
+                str_data = str_data + " to " + str(self._page.paginator.per_page) + " of " + str(self._page.paginator.count)
+            else:
+                if self._page.has_next():
+                    str_data = str_data + str((self._page.paginator.per_page * self._page.previous_page_number())+1) + " to " + str(self._page.paginator.per_page * self._page.number) + " of " + str(self._page.paginator.count)
+                else:
+                    str_data = str_data + str((self._page.paginator.per_page * self._page.previous_page_number())+1) + " to " + str(self._page.paginator.count) + " of " + str(self._page.paginator.count)
+
+        return str_data + " items"

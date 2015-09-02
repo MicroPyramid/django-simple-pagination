@@ -22,7 +22,7 @@ for dirpath, dirnames, filenames in os.walk(PROJECT_NAME):
 
 setup(
     name='django-simple-pagination',
-    version='1.0.2',
+    version='1.1.0',
     packages=['simple_pagination', 'simple_pagination.migrations', 'simple_pagination.templatetags'],
     include_package_data=True,
     description='A simple pagination app for Django.',

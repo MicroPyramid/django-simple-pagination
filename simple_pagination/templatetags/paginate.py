@@ -371,3 +371,39 @@ class ShowPagesNode(template.Node):
             override_path=data['override_path'],
         )
         return utils.text(pages)
+
+
+@register.tag
+def show_pageitems(parser, token):
+    """Show page items.
+
+    Usage:
+
+    .. code-block:: html+django
+
+        {% show_pageitems per_page %}
+
+    """
+    # Validate args.
+    if len(token.contents.split()) != 1:
+        msg = '%r tag takes no arguments' % token.contents.split()[0]
+        raise template.TemplateSyntaxError(msg)
+    # Call the node.
+    return ShowPageItemsNode()
+
+
+class ShowPageItemsNode(template.Node):
+    """Show the pagination."""
+
+    def render(self, context):
+        # This template tag could raise a PaginationError: you have to call
+        # *paginate* or *lazy_paginate* before including the getpages template.
+        data = utils.get_data_from_context(context)
+        pages = models.ShowItems(
+            context['request'],
+            data['page'],
+            data['querystring_key'],
+            default_number=data['default_number'],
+            override_path=data['override_path'],
+        )
+        return utils.text(pages)
