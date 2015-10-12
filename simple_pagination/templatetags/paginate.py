@@ -361,7 +361,7 @@ class ShowPagesNode(template.Node):
         # This template tag could raise a PaginationError: you have to call
         # *paginate* or *lazy_paginate* before including the getpages template.
         data = utils.get_data_from_context(context)
-        print data
+        print(data)
         # Return the string representation of the sequence of pages.
         pages = models.PageList(
             context['request'],
