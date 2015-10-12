@@ -208,7 +208,7 @@ class PaginateNode(template.Node):
         # If *var_name* is not passed, then the queryset name will be used.
         self.var_name = objects if var_name is None else var_name
 
-        # If *per_page* is not passed then the default value form settings
+        # If *per_page* is not passed then the default value from settings
         # will be used.
         self.per_page_variable = None
         if per_page is None:
