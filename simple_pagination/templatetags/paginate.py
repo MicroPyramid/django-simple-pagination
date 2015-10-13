@@ -208,7 +208,7 @@ class PaginateNode(template.Node):
         # If *var_name* is not passed, then the queryset name will be used.
         self.var_name = objects if var_name is None else var_name
 
-        # If *per_page* is not passed then the default value form settings
+        # If *per_page* is not passed then the default value from settings
         # will be used.
         self.per_page_variable = None
         if per_page is None:
@@ -361,7 +361,7 @@ class ShowPagesNode(template.Node):
         # This template tag could raise a PaginationError: you have to call
         # *paginate* or *lazy_paginate* before including the getpages template.
         data = utils.get_data_from_context(context)
-        print data
+        print(data)
         # Return the string representation of the sequence of pages.
         pages = models.PageList(
             context['request'],
