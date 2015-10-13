@@ -44,13 +44,13 @@ Of course you can mix it all:
 show_pageitems
 ~~~~~~~~~~~~~~
 
-Show page items. Usage:
+Usage:
 
 .. code-block:: html+django
 
     {% show_pageitems %}
 
-The sequence can contain following values with other page links:
+This call in the template will give a digg-style page sequence that contain following values with other page links:
 
 - *'previous'*: will display the previous page in that position;
 - *'next'*: will display the next page in that position;
