@@ -4,7 +4,7 @@ Django-Simple-Pagination
 Django-Simple-Pagination is a simple Django app to for digg-style pagination with little effort.
 
 **Documentation** is `avaliable online
-<http://django-endless-pagination.readthedocs.org/>`_, or in the docs
+<http://django-simple-pagination.readthedocs.org/>`_, or in the docs
 directory of the project.
 
 Quick start
