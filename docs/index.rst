@@ -20,5 +20,3 @@ Contents:
    templatetags_reference
    settings
    contributing
-   contacts
-   thanks
