@@ -260,13 +260,16 @@ class ShowItems(utils.UnicodeMixin):
     def __unicode__(self):
         """Render the page as a link."""
         str_data = "Showing "
-        if self._page.number == 1 and not self._page.has_next():
+        if self._page.paginator.count == 1:
             str_data += str(1)
             str_data = str_data + " to " + str(len(self._page.object_list)) + " of " + str(len(self._page.object_list))
         else:
             if self._page.number == 1:
                 str_data += str(1)
-                str_data = str_data + " to " + str(self._page.paginator.per_page) + " of " + str(self._page.paginator.count)
+                if self._page.paginator.per_page == str(self._page.paginator.count):
+                    str_data = str_data + " to " + str(self._page.paginator.per_page) + " of " + str(self._page.paginator.count)
+                else:
+                    str_data = str_data + " to " + str(len(self._page.object_list)) + " of " + str(self._page.paginator.count)
             else:
                 if self._page.has_next():
                     str_data = str_data + str((self._page.paginator.per_page * self._page.previous_page_number())+1) + " to " + str(self._page.paginator.per_page * self._page.number) + " of " + str(self._page.paginator.count)
