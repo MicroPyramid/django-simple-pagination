@@ -1,3 +1,7 @@
 from django.test import TestCase
 
-# Create your tests here.
+
+class Sample(TestCase):
+
+    def test_addition(self):
+        self.assertEqual(2+4, 6)
