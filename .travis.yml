@@ -7,6 +7,10 @@ python:
 
 install:
   - python setup.py install
+  - pip install coveralls
 
 script:
-  - python test_runner.py test
+  - coverage run test_runner.py test
+
+after_success:
+  coveralls
