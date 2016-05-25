@@ -12,7 +12,8 @@ if __name__ == "__main__":
             'default': {
                 'ENGINE': 'django.db.backends.sqlite3',
             }
-        }
+        },
+        INSTALLED_APPS=('simple_pagination',)
     )
     os.environ['DJANGO_SETTINGS_MODULE'] = 'simple_pagination.settings'
     django.setup()
