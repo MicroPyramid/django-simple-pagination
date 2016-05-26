@@ -6,7 +6,9 @@ from simple_pagination.utils import(
     get_querystring_for_page,
     get_page_numbers,
 )
+from simple_pagination.models import EndlessPage, PageList, ShowItems
 from django.http import QueryDict
+from django.core.paginator import Paginator
 
 
 class PaginateAndShowPageItems(TestCase):
@@ -59,6 +61,38 @@ class GetQuerystringForPage(TestCase):
 class GetPageNumbers(TestCase):
 
     def test_get_page_numbers(self):
-        get_page_numbers(current_page=2, num_pages=10)
-        get_page_numbers(current_page=9, num_pages=10)
-        get_page_numbers(current_page=1, num_pages=3)
+        self.assertTrue(get_page_numbers(current_page=2, num_pages=10))
+        self.assertTrue(get_page_numbers(current_page=9, num_pages=10))
+        self.assertTrue(get_page_numbers(current_page=1, num_pages=3))
+
+
+class TestEndlessPage(TestCase):
+
+    def test_endless_page(self):
+        request = HttpRequest()
+        epage = EndlessPage(request=request,
+                            number=2,
+                            current_number=2,
+                            total_number=10,
+                            querystring_key='page')
+        self.assertTrue(epage)
+
+
+class TestPageList(TestCase):
+
+    def test_page_list(self):
+        request = HttpRequest()
+        paginator = Paginator(['john', 'paul', 'george', 'ringo'], 3)
+        page = paginator.page(1)
+        page.number = lambda: None
+        setattr(page, 'number', 2)
+        setattr(page, 'paginator', paginator)
+        page_list = PageList(request=request, page=page, querystring_key="page")
+        page_list = PageList(request=request, page=page, querystring_key="page", default_number=1)
+        page_list._endless_page(number=1)
+        page_list._endless_page(number=3)
+        self.assertTrue(page_list[1])
+        page_list.next()
+        self.assertTrue(page_list)
+        si = ShowItems(request=request, page=page, querystring_key="page")
+        self.assertTrue(si)
