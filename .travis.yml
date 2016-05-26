@@ -10,7 +10,7 @@ install:
   - pip install coveralls
 
 script:
-  - coverage run test_runner.py test
+  - coverage run --source=simple_pagination  test_runner.py test
 
 after_success:
   coveralls
