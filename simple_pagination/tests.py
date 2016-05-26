@@ -95,4 +95,4 @@ class TestPageList(TestCase):
         page_list.next()
         self.assertTrue(page_list)
         si = ShowItems(request=request, page=page, querystring_key="page")
-        self.assertTrue(unicode(si))
+        self.assertTrue(si)
