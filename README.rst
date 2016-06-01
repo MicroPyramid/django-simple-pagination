@@ -4,6 +4,14 @@ Django-Simple-Pagination
 .. image:: https://travis-ci.org/MicroPyramid/django-simple-pagination.svg?branch=master
    :target: https://travis-ci.org/MicroPyramid/django-simple-pagination
 
+.. image:: https://img.shields.io/pypi/dm/django-simple-pagination.svg
+    :target: https://pypi.python.org/pypi/django-simple-pagination
+    :alt: Downloads
+
+.. image:: https://img.shields.io/pypi/v/django-simple-pagination.svg
+    :target: https://pypi.python.org/pypi/django-simple-pagination
+    :alt: Latest Release
+    
 .. image:: https://coveralls.io/repos/github/MicroPyramid/django-simple-pagination/badge.svg?branch=master
    :target: https://coveralls.io/github/MicroPyramid/django-simple-pagination?branch=master
 
