@@ -32,3 +32,7 @@ Quick start
     ]
 2. In templates use ``{% paginate entities %}`` to get pagination objects.
 3. In templates use ``{% show_pageitems %}`` to get digg-style page links.
+
+For additional help you can `Contact us here`_
+
+.. _contact us here: https://micropyramid.com/contact-us/
