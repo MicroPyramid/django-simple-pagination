@@ -19,7 +19,7 @@ Django-Simple-Pagination
    :target: https://landscape.io/github/MicroPyramid/django-simple-pagination/master
    :alt: Code Health
 
-.. image:: https://img.shields.io/pypi/l/django-simple-pagination.svg
+.. image:: https://img.shields.io/github/license/micropyramid/django-simple-pagination.svg
     :target: https://pypi.python.org/pypi/django-simple-pagination/
 
 Django-Simple-Pagination is a simple Django app to for digg-style pagination with little effort.
