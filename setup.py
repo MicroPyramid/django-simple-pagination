@@ -1,9 +1,6 @@
 import os
 from setuptools import setup
 
-with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
-    README = readme.read()
-
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 PROJECT_NAME = 'simple_pagination'
@@ -22,11 +19,11 @@ for dirpath, dirnames, filenames in os.walk(PROJECT_NAME):
 
 setup(
     name='django-simple-pagination',
-    version='1.1.5',
+    version='1.1.6',
     packages=['simple_pagination', 'simple_pagination.migrations', 'simple_pagination.templatetags'],
-    include_package_data=True,
+    include_package_data=,
     description='A simple pagination app for Django.',
-    long_description=README,
+    long_description="\n\n".join([open("READ.rst").read()]),
     url='https://github.com/MicroPyramid/django-simple-pagination',
     author='Chaitanya',
     author_email='chaitanya@micropyramid.com',
