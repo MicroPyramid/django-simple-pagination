@@ -50,7 +50,10 @@ Questions, Comments, etc?
 
 We welcome your feedback and support, raise `github ticket`_ if you want to report a bug. Need new features? `Contact us here`_
 
+Visit our Django web development page `Here`_
+
 .. _contact us here: https://micropyramid.com/contact-us/
 .. _avaliable online: http://django-simple-pagination.readthedocs.org/
 .. _github ticket: https://github.com/MicroPyramid/microurl/issues
 .. _Django Simple Pagination: https://micropyramid.com/oss/
+.. _Here: https://micropyramid.com/django-development-services/
