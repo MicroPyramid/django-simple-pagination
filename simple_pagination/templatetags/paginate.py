@@ -356,7 +356,7 @@ class ShowPagesNode(template.Node):
 
 
 @register.tag
-def show_pageitems(token):
+def show_pageitems(_, token):
     """Show page items.
 
     Usage:
