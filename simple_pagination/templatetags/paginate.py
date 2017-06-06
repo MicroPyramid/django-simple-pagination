@@ -304,7 +304,7 @@ class PaginateNode(template.Node):
 
 
 @register.tag
-def show_pages(token):
+def show_pages(_, token):
     """Show page links.
 
     Usage:
