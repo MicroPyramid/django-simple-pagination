@@ -28,9 +28,12 @@ class EndlessPage(utils.UnicodeMixin):
         - *self.is_last*:  return True if page is the last page.
     """
 
-    def __init__(
-            self, request, number, current_number, total_number,
-            querystring_key, label=None, default_number=1, override_path=None):
+    def __init__(self, request, number, current_number, **kwargs):
+        total_number = kwargs.get('total_number')
+        querystring_key = kwargs.get('querystring_key')
+        label = kwargs.get('label', None)
+        default_number = kwargs.get('default_number', 1)
+        override_path = kwargs.get('override_path', None)
         self._request = request
         self.number = number
         self.label = utils.text(number) if label is None else label

@@ -35,7 +35,7 @@ register = template.Library()
 
 
 @register.tag
-def paginate(parser, token, paginator_class=None):
+def paginate(_, token, paginator_class=None):
     """Paginate objects.
 
     Usage:
