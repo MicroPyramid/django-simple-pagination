@@ -21,7 +21,7 @@ setup(
     name='django-simple-pagination',
     version='1.1.6',
     packages=['simple_pagination', 'simple_pagination.migrations', 'simple_pagination.templatetags'],
-    include_package_data=,
+    include_package_data=True,
     description='A simple pagination app for Django.',
     long_description="\n\n".join([open("READ.rst").read()]),
     url='https://github.com/MicroPyramid/django-simple-pagination',

@@ -65,9 +65,9 @@ class EndlessPage(utils.UnicodeMixin):
 class PageList(utils.UnicodeMixin):
     """A sequence of endless pages."""
 
-    def __init__(
-            self, request, page, querystring_key,
-            default_number=None, override_path=None):
+    def __init__(self, request, page, querystring_key, **kwargs):
+        default_number = kwargs.get('default_number', None)
+        override_path = kwargs.get('override_path', None)
         self._request = request
         self._page = page
         if default_number is None:
@@ -241,9 +241,9 @@ class ShowItems(utils.UnicodeMixin):
         - *self.is_last*:  return True if page is the last page.
     """
 
-    def __init__(
-            self, request, page, querystring_key,
-            default_number=None, override_path=None):
+    def __init__(self, request, page, querystring_key, **kwargs):
+        default_number = kwargs.get('default_number', None)
+        override_path = kwargs.get('override_path', None)
         self._request = request
         self._page = page
         if default_number is None:
@@ -268,8 +268,20 @@ class ShowItems(utils.UnicodeMixin):
                     str_data = str_data + " to " + str(len(self._page.object_list)) + " of " + str(self._page.paginator.count)
             else:
                 if self._page.has_next():
-                    str_data = str_data + str((self._page.paginator.per_page * self._page.previous_page_number())+1) + " to " + str(self._page.paginator.per_page * self._page.number) + " of " + str(self._page.paginator.count)
+                    str_data += "".join(map(str, [
+                        (self._page.paginator.per_page * self._page.previous_page_number()) + 1,
+                        " to ",
+                        self._page.paginator.per_page * self._page.number,
+                        " of ",
+                        self._page.paginator.count
+                    ]))
                 else:
-                    str_data = str_data + str((self._page.paginator.per_page * self._page.previous_page_number())+1) + " to " + str(self._page.paginator.count) + " of " + str(self._page.paginator.count)
+                    str_data += "".join(map(str, [
+                        self._page.paginator.per_page * self._page.previous_page_number() + 1,
+                        " to ",
+                        self._page.paginator.count,
+                        " of ",
+                        self._page.paginator.count
+                    ]))
 
         return str_data + " items"
