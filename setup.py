@@ -23,7 +23,7 @@ setup(
     packages=['simple_pagination', 'simple_pagination.migrations', 'simple_pagination.templatetags'],
     include_package_data=True,
     description='A simple pagination app for Django.',
-    long_description="\n\n".join([open("READ.rst").read()]),
+    long_description="\n\n".join([open("README.rst").read()]),
     url='https://github.com/MicroPyramid/django-simple-pagination',
     author='Chaitanya',
     author_email='chaitanya@micropyramid.com',
