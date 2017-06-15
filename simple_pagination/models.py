@@ -30,7 +30,7 @@ class EndlessPage(utils.UnicodeMixin):
 
     def __init__(self, request, number, current_number, *args, **kwargs):
         total_number = kwargs.get('total_number')
-        querystring_key = kwargs.get('querystring_key')
+        querystring_key = kwargs.get('querystring_key', 'page')
         label = kwargs.get('label', None)
         default_number = kwargs.get('default_number', 1)
         override_path = kwargs.get('override_path', None)
