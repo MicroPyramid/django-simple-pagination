@@ -15,7 +15,7 @@ class PaginateAndShowPageItems(TestCase):
 
     def test_addition(self):
         t = Template(
-            "{% load paginate %}{% paginate entities %}.{% show_pageitems %} {% paginate 20 entities %}")
+            "{% load paginate %}{% paginate entities %}.{% show_pageitems %} {% paginate 20 entities %} {% show_pages %}")
         req = HttpRequest()
         c = Context({"entities": range(100), 'request': req})
         val = t.render(c)

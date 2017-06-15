@@ -2,10 +2,7 @@
 
 from __future__ import unicode_literals
 
-from django.template import (
-    loader,
-    RequestContext,
-)
+from django.template import loader
 from django.utils.encoding import iri_to_uri
 
 from simple_pagination import settings
@@ -31,9 +28,12 @@ class EndlessPage(utils.UnicodeMixin):
         - *self.is_last*:  return True if page is the last page.
     """
 
-    def __init__(
-            self, request, number, current_number, total_number,
-            querystring_key, label=None, default_number=1, override_path=None):
+    def __init__(self, request, number, current_number, *args, **kwargs):
+        total_number = kwargs.get('total_number')
+        querystring_key = kwargs.get('querystring_key')
+        label = kwargs.get('label', None)
+        default_number = kwargs.get('default_number', 1)
+        override_path = kwargs.get('override_path', None)
         self._request = request
         self.number = number
         self.label = utils.text(number) if label is None else label
@@ -62,15 +62,15 @@ class EndlessPage(utils.UnicodeMixin):
             template_name = 'simple/page_link.html'
         template = _template_cache.setdefault(
             template_name, loader.get_template(template_name))
-        return template.render(RequestContext(self._request, context))
+        return template.render(context)
 
 
 class PageList(utils.UnicodeMixin):
     """A sequence of endless pages."""
 
-    def __init__(
-            self, request, page, querystring_key,
-            default_number=None, override_path=None):
+    def __init__(self, request, page, querystring_key, **kwargs):
+        default_number = kwargs.get('default_number', None)
+        override_path = kwargs.get('override_path', None)
         self._request = request
         self._page = page
         if default_number is None:
@@ -159,8 +159,7 @@ class PageList(utils.UnicodeMixin):
                     pages.append(self.last_as_arrow())
                 else:
                     pages.append(self[item])
-            context = RequestContext(self._request, {'pages': pages})
-            return loader.render_to_string('simple/show_pages.html', context)
+            return loader.render_to_string('simple/show_pages.html', {'pages': pages})
         return ''
 
     def current(self):
@@ -245,9 +244,9 @@ class ShowItems(utils.UnicodeMixin):
         - *self.is_last*:  return True if page is the last page.
     """
 
-    def __init__(
-            self, request, page, querystring_key,
-            default_number=None, override_path=None):
+    def __init__(self, request, page, querystring_key, **kwargs):
+        default_number = kwargs.get('default_number', None)
+        override_path = kwargs.get('override_path', None)
         self._request = request
         self._page = page
         if default_number is None:
@@ -272,8 +271,20 @@ class ShowItems(utils.UnicodeMixin):
                     str_data = str_data + " to " + str(len(self._page.object_list)) + " of " + str(self._page.paginator.count)
             else:
                 if self._page.has_next():
-                    str_data = str_data + str((self._page.paginator.per_page * self._page.previous_page_number())+1) + " to " + str(self._page.paginator.per_page * self._page.number) + " of " + str(self._page.paginator.count)
+                    str_data += "".join(map(str, [
+                        (self._page.paginator.per_page * self._page.previous_page_number()) + 1,
+                        " to ",
+                        self._page.paginator.per_page * self._page.number,
+                        " of ",
+                        self._page.paginator.count
+                    ]))
                 else:
-                    str_data = str_data + str((self._page.paginator.per_page * self._page.previous_page_number())+1) + " to " + str(self._page.paginator.count) + " of " + str(self._page.paginator.count)
+                    str_data += "".join(map(str, [
+                        self._page.paginator.per_page * self._page.previous_page_number() + 1,
+                        " to ",
+                        self._page.paginator.count,
+                        " of ",
+                        self._page.paginator.count
+                    ]))
 
         return str_data + " items"

@@ -3,12 +3,9 @@
 import re
 
 from django import template
-from django.utils.encoding import iri_to_uri
 from simple_pagination import settings
 from django.core.paginator import (
     EmptyPage,
-    Page,
-    PageNotAnInteger,
     Paginator,
 )
 from simple_pagination import utils
@@ -38,7 +35,7 @@ register = template.Library()
 
 
 @register.tag
-def paginate(parser, token, paginator_class=None):
+def paginate(_, token, paginator_class=None):
     """Paginate objects.
 
     Usage:
@@ -181,27 +178,19 @@ def paginate(parser, token, paginator_class=None):
     return PaginateNode(paginator_class, objects, **kwargs)
 
 
-@register.tag
-def lazy_paginate(parser, token):
-    """Lazy paginate objects.
-
-    Paginate objects without hitting the database with a *select count* query.
-
-    Use this the same way as *paginate* tag when you are not interested
-    in the total number of pages.
-    """
-    return paginate(parser, token, paginator_class=LazyPaginator)
-
-
 class PaginateNode(template.Node):
     """Add to context the objects of the current page.
 
     Also add the Django paginator's *page* object.
     """
 
-    def __init__(
-            self, paginator_class, objects, first_page=None, per_page=None,
-            var_name=None, number=None, key=None, override_path=None):
+    def __init__(self, paginator_class, objects, **kwargs):
+        first_page = kwargs.get('first_page', None)
+        per_page = kwargs.get('per_page', None)
+        var_name = kwargs.get('var_name', None)
+        number = kwargs.get('number', None)
+        key = kwargs.get('key', None)
+        override_path = kwargs.get('override_path', None)
         self.paginator = paginator_class or Paginator
         self.objects = template.Variable(objects)
 
@@ -270,12 +259,6 @@ class PaginateNode(template.Node):
         else:
             per_page = int(self.per_page_variable.resolve(context))
 
-        # Calculate the number of items to show in the first page.
-        if self.first_page_variable is None:
-            first_page = self.first_page or per_page
-        else:
-            first_page = int(self.first_page_variable.resolve(context))
-
         # User can override the querystring key to use in the template.
         # The default value is defined in the settings file.
         if self.querystring_key_variable is None:
@@ -321,7 +304,7 @@ class PaginateNode(template.Node):
 
 
 @register.tag
-def show_pages(parser, token):
+def show_pages(_, token):
     """Show page links.
 
     Usage:
@@ -373,7 +356,7 @@ class ShowPagesNode(template.Node):
 
 
 @register.tag
-def show_pageitems(parser, token):
+def show_pageitems(_, token):
     """Show page items.
 
     Usage:

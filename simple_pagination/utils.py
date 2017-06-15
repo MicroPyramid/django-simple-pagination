@@ -24,8 +24,7 @@ def get_data_from_context(context):
     try:
         return context['endless']
     except KeyError:
-        raise exceptions.PaginationError(
-            'Cannot find endless data in context.')
+        raise Exception('Cannot find endless data in context.')
 
 
 def get_page_number_from_request(
@@ -40,9 +39,7 @@ def get_page_number_from_request(
         return default
 
 
-def get_page_numbers(
-        current_page, num_pages, extremes='',
-        arounds='', arrows=''):
+def get_page_numbers(current_page, num_pages):
     """Default callable for page listing.
     Produce a Digg-style pagination.
     """
@@ -50,7 +47,7 @@ def get_page_numbers(
     if current_page <= 2:
         start_page = 1
     else:
-        start_page = current_page-2
+        start_page = current_page - 2
 
     if num_pages <= 4:
         end_page = num_pages
@@ -63,7 +60,7 @@ def get_page_numbers(
     if current_page != 1:
         pages.append('first')
         pages.append('previous')
-    pages.extend([i for i in range(start_page, end_page+1)])
+    pages.extend([i for i in range(start_page, end_page + 1)])
     if current_page != num_pages:
         pages.append('next')
         pages.append('last')
