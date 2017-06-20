@@ -1,0 +1,35 @@
+{% load paginate %}
+{% if per_page %}
+  {% paginate per_page users %}
+{% else %}
+  {% paginate 10 users %}
+{% endif %}
+
+<div class="col-md-6 col-xs-6 result-items">
+{% show_pageitems %}
+</div>
+
+<h3>Users List</h3>
+<table class="table">
+    <thead>
+    <tr>
+        <th width="8%">No</th>
+        <th width="12%">Email</th>
+        <th width="30%">Username</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.username }}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<nav class="overview-paging">
+      {% show_pages %}
+    </nav>
+
