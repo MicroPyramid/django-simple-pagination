@@ -19,7 +19,7 @@ for dirpath, dirnames, filenames in os.walk(PROJECT_NAME):
 
 setup(
     name='django-simple-pagination',
-    version='1.2',
+    version='1.3',
     packages=['simple_pagination', 'simple_pagination.migrations', 'simple_pagination.templatetags'],
     include_package_data=True,
     description='A simple pagination app for Django.',
@@ -42,6 +42,6 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
     install_requires=[
-        "Django>=1.6.0,<=2.0",
+        "Django>=1.6.0",
     ],
 )
