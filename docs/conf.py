@@ -49,7 +49,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'django-simple-pagination'
-copyright = u'2016, Micro Pyramid'
+copyright = u'2020, Micro Pyramid'
 author = u'Micro Pyramid'
 
 # The version info for the project you're documenting, acts as replacement for

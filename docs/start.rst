@@ -6,7 +6,7 @@ Requirements
 
 ======  ====================
 Python  >= 2.6 (or Python 3)
-Django  >= 1.3
+Django  >= 2.1
 jQuery  >= 1.7
 ======  ====================
 
