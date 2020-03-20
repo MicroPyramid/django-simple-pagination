@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 import sys
+import urllib
 
 from simple_pagination.settings import (
     PAGE_LABEL
@@ -78,7 +79,10 @@ def get_querystring_for_page(
     if 'querystring_key' in querydict:
         del querydict['querystring_key']
     if querydict:
-        return '?' + querydict.urlencode()
+        if PYTHON3:
+            return '?' + urllib.parse.urlencode(querydict)
+        else:
+            return '?' + urllib.urlencode(querydict)
     return ''
 
 
