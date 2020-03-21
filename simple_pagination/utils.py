@@ -1,5 +1,5 @@
-import urllib
 from __future__ import unicode_literals
+import urllib
 
 from simple_pagination.settings import (
     PAGE_LABEL
