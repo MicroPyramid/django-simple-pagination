@@ -1,19 +1,9 @@
+import urllib
 from __future__ import unicode_literals
-import sys
 
 from simple_pagination.settings import (
     PAGE_LABEL
 )
-
-
-# Handle the Python 2 to 3 migration.
-if sys.version_info[0] >= 3:
-    PYTHON3 = True
-    text = str
-else:
-    PYTHON3 = False
-    # Avoid lint errors under Python 3.
-    text = unicode  # NOQA
 
 
 def get_data_from_context(context):
@@ -78,7 +68,7 @@ def get_querystring_for_page(
     if 'querystring_key' in querydict:
         del querydict['querystring_key']
     if querydict:
-        return '?' + querydict.urlencode()
+        return '?' + urllib.parse.urlencode(querydict)
     return ''
 
 
@@ -91,11 +81,3 @@ def normalize_page_number(page_number, page_range):
         return page_range[page_number]
     except IndexError:
         return page_range[0]
-
-
-class UnicodeMixin(object):
-    """Mixin class to handle defining the proper unicode and string methods."""
-
-    if PYTHON3:
-        def __str__(self):
-            return self.__unicode__()
