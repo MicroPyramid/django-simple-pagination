@@ -352,7 +352,7 @@ class ShowPagesNode(template.Node):
             default_number=data['default_number'],
             override_path=data['override_path'],
         )
-        return utils.text(pages)
+        return str(pages)
 
 
 @register.tag
@@ -388,4 +388,4 @@ class ShowPageItemsNode(template.Node):
             default_number=data['default_number'],
             override_path=data['override_path'],
         )
-        return utils.text(pages)
+        return str(pages)
